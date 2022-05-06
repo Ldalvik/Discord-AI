@@ -1,13 +1,14 @@
 package root.ogbot.games;
 
 import net.dv8tion.jda.api.entities.Message;
+import net.dv8tion.jda.api.entities.MessageType;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 import java.util.Random;
 
 public class Type {
     long startMilli = 0;
-    String currentWord = "";
+    String currentWord;
 
     public void run(MessageReceivedEvent event) {
         String username = event.getAuthor().getName();
@@ -24,7 +25,7 @@ public class Type {
                 startMilli = System.currentTimeMillis();
             }
         }
-        if (content.equals(currentWord)) {
+        if (event.getMessage().getContentRaw() != null && content.equals(currentWord)) {
             long time = System.currentTimeMillis();
             long reaction = startMilli - time;
             message.reply("pinging...")

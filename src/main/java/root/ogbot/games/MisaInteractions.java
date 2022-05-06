@@ -7,7 +7,6 @@ import java.util.concurrent.TimeUnit;
 
 public class MisaInteractions {
 
-
     public static void run(MessageReceivedEvent event){
         String content = event.getMessage().getContentRaw();
         Message message = event.getMessage();
@@ -22,7 +21,7 @@ public class MisaInteractions {
             message.reply("YEA, REALLY BITCH.").queueAfter(2, TimeUnit.SECONDS);
         }
 
-        if(content.startsWith("root. is a LOSER!")) {
+        if(content.startsWith("root. has LOST")) {
             event.getChannel().sendTyping().completeAfter(2, TimeUnit.SECONDS);
             message.reply("Oh no.. my master lost shekels... what an idiot lol").queueAfter(2, TimeUnit.SECONDS);
         }
