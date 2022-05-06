@@ -26,7 +26,7 @@ public class Type {
         }
         if (content.equals(currentWord)) {
             long time = System.currentTimeMillis();
-            long reaction = time - startMilli;
+            long reaction = startMilli - time;
             message.reply("pinging...")
                     .queue(response -> response.editMessage(
                             username + " won! " +
