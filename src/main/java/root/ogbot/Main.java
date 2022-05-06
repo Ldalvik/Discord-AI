@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Main extends ListenerAdapter {
     public static String VERSION = "0.0.1";
-    public static String HEROKU_VERSION = "v38";
+    public static String HEROKU_VERSION = "v40";
     static long start = System.currentTimeMillis();
     Fish fish = new Fish();
     Type type = new Type();
