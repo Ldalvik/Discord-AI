@@ -119,6 +119,9 @@ public class Main extends ListenerAdapter {
         //if(content.startsWith("!rpc"))
             //RockPaperScissors.run(event);
 
+        if(content.startsWith("!guess"))
+            Guess.run(event);
+
         if (content.startsWith("!roll"))
             Roll.run(event);
 

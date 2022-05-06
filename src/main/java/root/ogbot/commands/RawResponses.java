@@ -7,7 +7,7 @@ import java.util.Random;
 public class RawResponses {
 
     static String[] responses = {
-            "Wait, you gotta match up with Root ot Kira first.",
+            "Wait, you gotta match up with Root or Kira first.",
             "I think you should share some of that with me",
             "LMAO you got mids bro",
             "Zaza? Baba."

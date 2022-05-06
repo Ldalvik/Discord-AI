@@ -35,7 +35,7 @@ public class ShouldI {
 
         if(content.contains("smoke") || content.contains("take a hit") || content.contains("take a rip") ||
         content.contains("bong rip") || content.contains("joint") || content.contains("spark up") ||
-        content.contains("blazed"))
+        content.contains("get high") || content.contains("pen"))
             event.getMessage().reply(weedResponses[new Random().nextInt(weedResponses.length)]).queue();
 
         else event.getMessage().reply(responses[new Random().nextInt(responses.length)]).queue();
