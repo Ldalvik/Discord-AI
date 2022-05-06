@@ -36,18 +36,20 @@ public class Main extends ListenerAdapter {
 
         //if(content.startsWith("!fish")) fish.run(event);
 
-        
+
         if(content.equals("!link"))
             channel.sendMessage("Use this link to invite the bot to your channels: "
                     + "https://discord.com/oauth2/authorize?client_id=969807725666119790&scope=bot").queue();
 
-        if(content.startsWith("!log"))  //Send message to log channel
-            jda.getTextChannelById("971646511475740722").sendMessage(content.substring(5));
+        if(content.startsWith("!log")) {  //Send message to log channel
+            System.out.println("log: " + content);
+            jda.getGuildById("969809178401050655").getTextChannelById("971646511475740722")
+                    .sendMessage(content.substring(5));
+        }
+
 
         if(content.equals("!ping"))
             ping.run(event);
-
-
 
         if(content.startsWith("!roll"))
             roll.run(event);
