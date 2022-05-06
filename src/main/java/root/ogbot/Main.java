@@ -44,7 +44,7 @@ public class Main extends ListenerAdapter {
                     + "https://discord.com/oauth2/authorize?client_id=969807725666119790&scope=bot").queue();
 
         if(content.startsWith("!log"))
-            System.out.println("LOG: " + content.substring(5));
+            System.out.println(content);
 
         if(content.equals("!ping"))
             ping.run(event);
