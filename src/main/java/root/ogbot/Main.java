@@ -44,6 +44,7 @@ public class Main extends ListenerAdapter {
         if(content.startsWith("!log"))
             System.out.println(content);
 
+
         if(content.equals("!ping"))
             ping.run(event);
 
