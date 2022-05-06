@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Roll {
 
-    public void run(MessageReceivedEvent event){
+    public static void run(MessageReceivedEvent event){
         String username = event.getAuthor().getName();
         String content = event.getMessage().getContentRaw();
         Message message = event.getMessage();

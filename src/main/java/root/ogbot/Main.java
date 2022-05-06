@@ -5,17 +5,13 @@ import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.entities.MessageChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
-import root.ogbot.games.Fish;
-import root.ogbot.games.Ping;
-import root.ogbot.games.Roll;
-import root.ogbot.games.Type;
+import root.ogbot.games.*;
 
 import java.util.Objects;
 
 public class Main extends ListenerAdapter {
     Fish fish = new Fish();
     Type type = new Type();
-    Roll roll = new Roll();
     Ping ping = new Ping();
 
     public static void main(String[] arguments) throws Exception {
@@ -25,11 +21,12 @@ public class Main extends ListenerAdapter {
         api.addEventListeners(new Main());
         api.setActivity(Activity.watching("for commands like !help..."));
         api.build();
-
         System.out.println("BOT STARTED");
     }
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
+
+        if(event.getAuthor().getId().equals("584160547272917015")) MisaInteractions.run(event);
         if (event.getAuthor().isBot()) return;
         String content = event.getMessage().getContentRaw();
         MessageChannel channel = event.getMessage().getChannel();
@@ -50,7 +47,7 @@ public class Main extends ListenerAdapter {
             ping.run(event);
 
         if(content.startsWith("!roll"))
-            roll.run(event);
+            Roll.run(event);
 
         type.run(event);  //Run everytime to check for correct type word
 
@@ -59,7 +56,7 @@ public class Main extends ListenerAdapter {
 
 
 //git add --all
-//git commit -m "Commit"
+//git commiteve -m "Commit"
 //git push heroku master
 
 //heroku deploy:jar Downloads/JavaExeDemo/OG-Bot-Discord/build/libs/OG-Bot-Discord-1.0-all.jar --app morning-beach-98088
