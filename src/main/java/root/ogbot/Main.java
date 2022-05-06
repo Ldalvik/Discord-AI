@@ -25,7 +25,6 @@ public class Main extends ListenerAdapter {
         api.addEventListeners(new Main());
         api.setActivity(Activity.watching("for commands like !help..."));
         api.build();
-        jda = (JDA) api;
         System.out.println("BOT STARTED");
     }
 
