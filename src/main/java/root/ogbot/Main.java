@@ -32,14 +32,15 @@ public class Main extends ListenerAdapter {
         api.setActivity(Activity.watching("for commands like !help..."));
         api.addEventListeners(new Main());
         api.addEventListeners(new ListenerAdapter() {
-            @Override public void onReady(@NotNull ReadyEvent event) {
+            @Override
+            public void onReady(@NotNull ReadyEvent event) {
                 int loadTime = (int) (System.currentTimeMillis() - start);
                 String[] loadTimes = ReadData.getLoadTimes();
                 int slowest = Integer.parseInt(loadTimes[0]);
                 int fastest = Integer.parseInt(loadTimes[1]);
-                if(loadTime<fastest)
+                if (loadTime < fastest)
                     ReadData.setFastLoadTime(loadTime);
-                if(loadTime>slowest)
+                if (loadTime > slowest)
                     ReadData.setSlowLoadTime(loadTime);
 
                 String[] loadTimes1 = ReadData.getLoadTimes();
@@ -49,15 +50,15 @@ public class Main extends ListenerAdapter {
 
                 //Bot channel LuAu
                 jda.getGuildById("398717225663725569").getTextChannelById("443097260423774208")
-                            .sendMessage("I came online in " + loadTime + " ms!\n" +
-                                            "Fastest: " + f + "ms\n" +
-                                            "Slowest: " + s + "ms\n" +
-                                            "Version: " + VERSION + "\n" +
-                                            "Heroku version: " + HEROKU_VERSION + "\n" +
-                                    "(This message will be deleted in 5 minutes)")
-                                     .delay(5, TimeUnit.MINUTES)
-                                     .flatMap(Message::delete)
-                                     .queue();
+                        .sendMessage("I came online in " + loadTime + " ms!\n" +
+                                "Fastest: " + f + "ms\n" +
+                                "Slowest: " + s + "ms\n" +
+                                "Version: " + VERSION + "\n" +
+                                "Heroku version: " + HEROKU_VERSION + "\n" +
+                                "(This message will be deleted in 5 minutes)")
+                        .delay(5, TimeUnit.MINUTES)
+                        .flatMap(Message::delete)
+                        .queue();
 
                 //Status channel for bot
                 jda.getGuildById("969809178401050655").getTextChannelById("972053387921219584")
@@ -80,6 +81,7 @@ public class Main extends ListenerAdapter {
         }).build();
         System.out.println("BOT STARTED");
     }
+
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
         if (event.getAuthor().getId().equals("584160547272917015")) MisaInteractions.run(event);
@@ -90,6 +92,18 @@ public class Main extends ListenerAdapter {
         String userID = event.getAuthor().getId();
 
         //if(content.startsWith("!fish")) fish.run(event);
+        if (content.startsWith("!help"))
+            message.reply("List of commands:\n" +
+                    "!ping\n" +
+                    "!roll [your question]\n" +
+                    "!rps [rock, paper, scissors]\n" +
+                    "!shouldi [something you wanna/dont wanna do]\n" +
+                    "!8balls [you know how an 8ball works]\n" +
+                    "!type\n" +
+                    "!typescore (personal score, WIP)\n" +
+                    "!typescore:global\n" +
+                    "!swap [rimId] [tunefile] (Swap rims on tune files for FH5, EXPERIMENTAL)"
+            ).queue();
 
         if (content.equals("!link"))
             channel.sendMessage("Use this link to invite the bot to your groupchat: "
@@ -98,19 +112,23 @@ public class Main extends ListenerAdapter {
         if (content.startsWith("!log"))
             System.out.println(content.substring(5));
 
-
         if (content.equals("!ping"))
             ping.run(event);
 
         if (content.startsWith("!roll"))
             Roll.run(event);
 
+        if (content.startsWith("!shouldi"))
+            ShouldI.run(event);
+
+        if(content.startsWith("!8balls"))
+            EightBalls.run(event);
         if (event.getMessage().getAttachments().isEmpty())
             type.run(event);  //Run everytime to check for correct type word
 
         if (content.equals("!typescore:global")) type.getGlobalHighscore(event);
 
-        if (content.equals("!typescore")) type.getPersonalHighscore(event);
+        //if(content.equals("!typescore")) type.getPersonalHighscore(event);
 
         if (content.startsWith("!swap")) {
             List<Message.Attachment> attachments = event.getMessage().getAttachments();

@@ -21,8 +21,7 @@ public class ReadData {
 
     public static int getTypeHighscore(String userID) throws IOException {
         if(!new File("data/type/users/" + userID + ".txt").exists()){
-            File f = new File("data/type/users/" + userID + ".txt");
-            if(f.createNewFile())
+            if(new File("data/type/users/" + userID + ".txt").createNewFile())
                 setTypeHighscore(userID, 99999); System.out.println("File created");
             return 99999;
         } else {

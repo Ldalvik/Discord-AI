@@ -11,6 +11,7 @@ import java.nio.file.Paths;
 import java.util.Random;
 
 public class Type {
+    String[] words = {"car", "loser", "creative", "delta", "bittle"};
     long startMilli = 0;
     String currentWord;
 
@@ -20,8 +21,9 @@ public class Type {
         Message message = event.getMessage();
         String userID = event.getAuthor().getId();
 
+        if(content.equals("!reset")) message.reply("Game reset!").queue(); currentWord = null;
+
         if (content.equals("!type")) {
-            String[] words = {"car", "loser", "creative", "delta", "bittle"};
             int random = new Random().nextInt(words.length);
             currentWord = words[random];
             if (startMilli != 0) message.reply("A game is still going on!").queue();
@@ -30,6 +32,7 @@ public class Type {
                 startMilli = System.currentTimeMillis();
             }
         }
+
         if (content.equals(currentWord)) {
             long time = System.currentTimeMillis();
             long reaction = startMilli - time;
@@ -47,11 +50,11 @@ public class Type {
                                     username + " just set a GLOBAL RECORD! %d ms",
                                     responseTime).queue();
                             ReadData.setTypeGlobalHighscore(userID, responseTime);
-                        } else if (responseTime < highscore) {
-                            response.editMessageFormat(
-                                    username + " set a new personal score! %d ms",
-                                    responseTime).queue();
-                            ReadData.setTypeHighscore(userID, responseTime);
+                        //} else if (responseTime < highscore) {
+                        //    response.editMessageFormat(
+                        //            username + " set a new personal score! %d ms",
+                        //            responseTime).queue();
+                        //    ReadData.setTypeHighscore(userID, responseTime);
                         } else
                             response.editMessageFormat(
                                     username + " won! %d ms",
