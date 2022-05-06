@@ -11,6 +11,8 @@ import root.ogbot.games.Ping;
 import root.ogbot.games.Roll;
 import root.ogbot.games.Type;
 
+import java.util.Objects;
+
 public class Main extends ListenerAdapter {
     Fish fish = new Fish();
     Type type = new Type();
@@ -43,8 +45,8 @@ public class Main extends ListenerAdapter {
 
         if(content.startsWith("!log")) {  //Send message to log channel
             System.out.println("log: " + content);
-            jda.getGuildById("969809178401050655").getTextChannelById("971646511475740722")
-                    .sendMessage(content.substring(5));
+            Objects.requireNonNull(jda.getTextChannelById("971646511475740722"))
+                    .sendMessage(content.substring(5)).queue();
         }
 
 
