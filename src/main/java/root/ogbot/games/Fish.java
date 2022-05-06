@@ -18,20 +18,14 @@ public class Fish {
     Message message;
     long messageSentMilli;
 
-    //Typing game
-    long startMilli = 0;
-    String currentWord;
-
-    public Fish(MessageReceivedEvent event){
+    public Fish run(MessageReceivedEvent event){
         this.event = event;
         content = event.getMessage().getContentRaw();
         username = event.getMessage().getAuthor().getName();
         channel = event.getMessage().getChannel();
         message = event.getMessage();
         messageSentMilli = (Long.parseLong(event.getMessageId()) >> 22) + 1420070400000L;
-    }
 
-    public Fish fish(){
         if(!new File("data/users/" + event.getAuthor().getId() + ".json").exists()){
             //new player
             FishParser.createNewPlayer();
