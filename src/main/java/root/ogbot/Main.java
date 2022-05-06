@@ -19,8 +19,8 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
 public class Main extends ListenerAdapter {
-    public static String VERSION = "0.0.1";
-    public static String HEROKU_VERSION = "v40";
+    public static String VERSION = "0.0.2";
+    public static String HEROKU_VERSION = "v42";
     static long start = System.currentTimeMillis();
     Fish fish = new Fish();
     Type type = new Type();
@@ -115,6 +115,9 @@ public class Main extends ListenerAdapter {
         if (content.equals("!ping"))
             ping.run(event);
 
+        //if(content.startsWith("!rpc"))
+            //RockPaperScissors.run(event);
+
         if (content.startsWith("!roll"))
             Roll.run(event);
 
@@ -123,6 +126,7 @@ public class Main extends ListenerAdapter {
 
         if(content.startsWith("!8balls"))
             EightBalls.run(event);
+
         if (event.getMessage().getAttachments().isEmpty())
             type.run(event);  //Run everytime to check for correct type word
 

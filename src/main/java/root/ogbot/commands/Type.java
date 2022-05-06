@@ -21,7 +21,11 @@ public class Type {
         Message message = event.getMessage();
         String userID = event.getAuthor().getId();
 
-        if(content.equals("!reset")) message.reply("Game reset!").queue(); currentWord = null;
+        if(content.equals("!reset")){
+            message.reply("Game reset.").queue();
+            currentWord = null;
+            startMilli = 0;
+        }
 
         if (content.equals("!type")) {
             int random = new Random().nextInt(words.length);
@@ -36,12 +40,12 @@ public class Type {
         if (content.equals(currentWord)) {
             long time = System.currentTimeMillis();
             long reaction = startMilli - time;
-            int highscore;
-            try {
-                highscore = ReadData.getTypeHighscore(userID);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+            //int highscore;
+            //try {
+            //    highscore = ReadData.getTypeHighscore(userID);
+            //} catch (IOException e) {
+            //    throw new RuntimeException(e);
+            //}
             message.reply("pinging...")
                     .queue(response -> {
                         int responseTime = (int) ((System.currentTimeMillis() - time) - reaction);
