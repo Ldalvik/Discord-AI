@@ -25,7 +25,7 @@ public class Type {
                 startMilli = System.currentTimeMillis();
             }
         }
-        if (event.getMessage().getContentRaw() != null && content.equals(currentWord)) {
+        if (content.equals(currentWord)) {
             long time = System.currentTimeMillis();
             long reaction = startMilli - time;
             message.reply("pinging...")

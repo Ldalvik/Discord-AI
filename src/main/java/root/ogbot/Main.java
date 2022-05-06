@@ -2,6 +2,7 @@ package root.ogbot;
 
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
+import net.dv8tion.jda.api.entities.ChannelType;
 import net.dv8tion.jda.api.entities.MessageChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -49,7 +50,8 @@ public class Main extends ListenerAdapter {
         if(content.startsWith("!roll"))
             Roll.run(event);
 
-        type.run(event);  //Run everytime to check for correct type word
+        if(content != null)
+            type.run(event);  //Run everytime to check for correct type word
 
     }
 }
