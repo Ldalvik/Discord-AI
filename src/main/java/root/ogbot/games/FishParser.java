@@ -4,12 +4,10 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.util.Random;
 
 public class FishParser {
     static MessageReceivedEvent event;
-
     /*static JSONObject userData;
     JSONObject fishData;
     JSONObject fishMetadata;

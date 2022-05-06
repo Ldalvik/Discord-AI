@@ -28,7 +28,6 @@ public class Main extends ListenerAdapter {
 
         System.out.println("BOT STARTED");
     }
-
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
         if (event.getAuthor().isBot()) return;

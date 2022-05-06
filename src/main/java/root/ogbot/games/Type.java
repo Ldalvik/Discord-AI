@@ -8,7 +8,7 @@ import java.util.Random;
 public class Type {
     long startMilli = 0;
     String currentWord;
-
+    
     public void run(MessageReceivedEvent event) {
         String username = event.getAuthor().getName();
         String content = event.getMessage().getContentRaw();

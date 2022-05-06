@@ -5,7 +5,7 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 public class Ping {
 
-    public Ping run(MessageReceivedEvent event) {
+    public void run(MessageReceivedEvent event) {
         Message message = event.getMessage();
         long time = System.currentTimeMillis();
         message.reply("Pong! - ms:")
@@ -26,7 +26,6 @@ public class Ping {
                     //      "Pong! %d ms\nLowest: " + low + "\nHighest: " + high, responseTime).queue();
                     //}
                 });
-        return this;
     }
 
 

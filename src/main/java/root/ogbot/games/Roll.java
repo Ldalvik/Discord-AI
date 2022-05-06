@@ -7,8 +7,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Roll {
 
-
-    public Roll run(MessageReceivedEvent event){
+    public void run(MessageReceivedEvent event){
         String username = event.getAuthor().getName();
         String content = event.getMessage().getContentRaw();
         Message message = event.getMessage();
@@ -33,6 +32,5 @@ public class Roll {
             message.reply("*" + username + "> " + content.substring(6) + "*\n" + result + " \n" + roll)
                     .delay(500, TimeUnit.MILLISECONDS).queue();
         }
-        return this;
     }
 }
