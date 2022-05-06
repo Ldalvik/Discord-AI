@@ -43,7 +43,7 @@ public class Main extends ListenerAdapter {
                     + "https://discord.com/oauth2/authorize?client_id=969807725666119790&scope=bot").queue();
 
         if(content.startsWith("!log"))
-            System.out.println(content);
+            System.out.println(content.substring(5));
 
 
         if(content.equals("!ping"))
