@@ -19,10 +19,13 @@ public class Main extends ListenerAdapter {
     Ping ping = new Ping();
 
     public static void main(String[] arguments) throws Exception {
+        System.out.println("Initializing...");
+
         JDABuilder api = JDABuilder.createDefault("OTY5ODA3NzI1NjY2MTE5Nzkw.Ymyx0w.Brx5EZ6mR-OU-K7xJGmi4Y9xJ_Y");
         api.addEventListeners(new Main());
         api.setActivity(Activity.watching("for commands like !help..."));
         api.build();
+
         System.out.println("BOT STARTED");
     }
 
