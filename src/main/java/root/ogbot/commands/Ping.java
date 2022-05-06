@@ -11,7 +11,6 @@ public class Ping {
         message.reply("Pong! - ms:")
                 .queue(response -> {
                     long responseTime = System.currentTimeMillis() - time;
-
                     response.editMessageFormat("Pong! %d ms", responseTime).queue();
                 });
     }

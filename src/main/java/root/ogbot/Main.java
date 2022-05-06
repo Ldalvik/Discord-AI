@@ -6,6 +6,7 @@ import net.dv8tion.jda.api.entities.*;
 import net.dv8tion.jda.api.events.ReadyEvent;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import org.jetbrains.annotations.NotNull;
 import root.ogbot.commands.*;
 import root.ogbot.decoder.Decoder;
 import root.ogbot.utils.ReadData;
@@ -18,6 +19,8 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
 public class Main extends ListenerAdapter {
+    public static String VERSION = "0.0.1";
+    public static String HEROKU_VERSION = "v38";
     static long start = System.currentTimeMillis();
     Fish fish = new Fish();
     Type type = new Type();
@@ -29,7 +32,7 @@ public class Main extends ListenerAdapter {
         api.setActivity(Activity.watching("for commands like !help..."));
         api.addEventListeners(new Main());
         api.addEventListeners(new ListenerAdapter() {
-            @Override public void onReady(ReadyEvent event) {
+            @Override public void onReady(@NotNull ReadyEvent event) {
                 int loadTime = (int) (System.currentTimeMillis() - start);
                 String[] loadTimes = ReadData.getLoadTimes();
                 int slowest = Integer.parseInt(loadTimes[0]);
@@ -43,33 +46,39 @@ public class Main extends ListenerAdapter {
                 int s = Integer.parseInt(loadTimes1[0]);
                 int f = Integer.parseInt(loadTimes1[1]);
                 JDA jda = event.getJDA();
+
+                //Bot channel LuAu
                 jda.getGuildById("398717225663725569").getTextChannelById("443097260423774208")
                             .sendMessage("I came online in " + loadTime + " ms!\n" +
                                             "Fastest: " + f + "ms\n" +
                                             "Slowest: " + s + "ms\n" +
-                                     "(This message will be deleted in 5 minutes)")
+                                            "Version: " + VERSION + "\n" +
+                                            "Heroku version: " + HEROKU_VERSION + "\n" +
+                                    "(This message will be deleted in 5 minutes)")
                                      .delay(5, TimeUnit.MINUTES)
                                      .flatMap(Message::delete)
                                      .queue();
 
+                //Status channel for bot
                 jda.getGuildById("969809178401050655").getTextChannelById("972053387921219584")
                         .sendMessageFormat("I came online in %d ms! (This message will be deleted in 5 minutes)", loadTime)
                         .delay(10, TimeUnit.SECONDS)
                         .flatMap(Message::delete).queue();
 
+                //Bot channel ForzaModding
                 jda.getGuildById("457063425005191168").getTextChannelById("493072341467791361")
                         .sendMessage("I came online in " + loadTime + " ms!\n" +
                                 "Fastest: " + f + "ms\n" +
                                 "Slowest: " + s + "ms\n" +
+                                "Version: " + VERSION + "\n" +
+                                "Heroku version: " + HEROKU_VERSION + "\n" +
                                 "(This message will be deleted in 5 minutes)")
                         .delay(5, TimeUnit.MINUTES)
                         .flatMap(Message::delete)
                         .queue();
             }
         }).build();
-
         System.out.println("BOT STARTED");
-
     }
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
