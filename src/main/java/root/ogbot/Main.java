@@ -43,12 +43,8 @@ public class Main extends ListenerAdapter {
             channel.sendMessage("Use this link to invite the bot to your channels: "
                     + "https://discord.com/oauth2/authorize?client_id=969807725666119790&scope=bot").queue();
 
-        if(content.startsWith("!log")) {  //Send message to log channel
-            System.out.println("LOG: " + content);
-            Objects.requireNonNull(jda.getTextChannelById("971646511475740722"))
-                    .sendMessage(content.substring(5)).queue();
-        }
-
+        if(content.startsWith("!log"))
+            System.out.println("LOG: " + content.substring(5));
 
         if(content.equals("!ping"))
             ping.run(event);
@@ -57,7 +53,6 @@ public class Main extends ListenerAdapter {
             roll.run(event);
 
         type.run(event, jda);  //Run everytime to check for correct type word
-
 
     }
 }
