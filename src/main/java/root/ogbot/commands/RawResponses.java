@@ -16,8 +16,9 @@ public class RawResponses {
     public static void run(MessageReceivedEvent event) {
         String content = event.getMessage().getContentRaw();
 
-        if(content.contains("smoke") || content.contains("take a hit") || content.contains("take a rip") ||
-                content.contains("bong rip") || content.contains("joint") || content.contains("spark up") ||
+        if(content.contains("smoke") || content.contains("smoking") || content.contains("take a hit") ||
+                content.contains("take a rip") || content.contains("bong rip") ||
+                content.contains("joint") || content.contains("spark up") ||
                 content.contains("blazed"))
             event.getMessage().reply(responses[new Random().nextInt(responses.length)]).queue();
     }

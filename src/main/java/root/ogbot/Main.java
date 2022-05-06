@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Main extends ListenerAdapter {
     public static String VERSION = "0.0.2";
-    public static String HEROKU_VERSION = "v42";
+    public static String HEROKU_VERSION = "v45";
     static long start = System.currentTimeMillis();
     Fish fish = new Fish();
     Type type = new Type();
@@ -86,6 +86,7 @@ public class Main extends ListenerAdapter {
     public void onMessageReceived(MessageReceivedEvent event) {
         if (event.getAuthor().getId().equals("584160547272917015")) MisaInteractions.run(event);
         if (event.getAuthor().isBot()) return;
+        RawResponses.run(event);
         String content = event.getMessage().getContentRaw();
         MessageChannel channel = event.getMessage().getChannel();
         Message message = event.getMessage();
