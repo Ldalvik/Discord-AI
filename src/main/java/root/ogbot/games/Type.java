@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class Type {
     long startMilli = 0;
-    String currentWord;
+    String currentWord = "";
 
     public void run(MessageReceivedEvent event) {
         String username = event.getAuthor().getName();
