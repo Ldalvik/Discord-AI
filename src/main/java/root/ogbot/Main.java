@@ -39,7 +39,7 @@ public class Main extends ListenerAdapter {
 
 
         if(content.equals("!link"))
-            channel.sendMessage("Use this link to invite the bot to your channels: "
+            channel.sendMessage("Use this link to invite the bot to your groupchat: "
                     + "https://discord.com/oauth2/authorize?client_id=969807725666119790&scope=bot").queue();
 
         if(content.startsWith("!log"))
