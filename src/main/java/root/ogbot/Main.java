@@ -56,4 +56,8 @@ public class Main extends ListenerAdapter {
 }
 
 
+//git add --all
+//git commit -m "Commit"
+//git push heroku master
+
 //heroku deploy:jar Downloads/JavaExeDemo/OG-Bot-Discord/build/libs/OG-Bot-Discord-1.0-all.jar --app morning-beach-98088
