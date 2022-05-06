@@ -29,7 +29,7 @@ public class Type {
             long reaction = startMilli - time;
             message.reply("pinging...")
                     .queue(response -> response.editMessageFormat(
-                            username + " won! %d ms" +
+                            username + " won! %d ms",
                                     ((System.currentTimeMillis() - time) - reaction)).queue());
             startMilli = 0;
             currentWord = "";
