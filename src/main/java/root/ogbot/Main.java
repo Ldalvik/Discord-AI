@@ -18,7 +18,6 @@ public class Main extends ListenerAdapter {
     Type type = new Type();
     Roll roll = new Roll();
     Ping ping = new Ping();
-    static JDA jda;
 
     public static void main(String[] arguments) throws Exception {
         JDABuilder api = JDABuilder.createDefault("OTY5ODA3NzI1NjY2MTE5Nzkw.Ymyx0w.Brx5EZ6mR-OU-K7xJGmi4Y9xJ_Y");
@@ -51,7 +50,7 @@ public class Main extends ListenerAdapter {
         if(content.startsWith("!roll"))
             roll.run(event);
 
-        type.run(event, jda);  //Run everytime to check for correct type word
+        type.run(event);  //Run everytime to check for correct type word
 
     }
 }
