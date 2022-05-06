@@ -44,7 +44,7 @@ public class Main extends ListenerAdapter {
                     + "https://discord.com/oauth2/authorize?client_id=969807725666119790&scope=bot").queue();
 
         if(content.startsWith("!log")) {  //Send message to log channel
-            System.out.println("log: " + content);
+            System.out.println("LOG: " + content);
             Objects.requireNonNull(jda.getTextChannelById("971646511475740722"))
                     .sendMessage(content.substring(5)).queue();
         }
