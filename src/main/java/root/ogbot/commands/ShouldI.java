@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class ShouldI {
     static String[] weedResponses = {
-            "I think you already know the answer to that... don;t come back until you green out.",
+            "I think you already know the answer to that... don't come back until you green out.",
             "What? Why are you even asking me that? Just smoke you retard",
             "Nope, not unless you're matching up.",
             "Stop typing and start smoking",

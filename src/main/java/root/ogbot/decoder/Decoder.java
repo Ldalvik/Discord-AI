@@ -25,12 +25,12 @@ public class Decoder {
         upgrades   = new UpgradeApi(buf);
         metadata   = new MetadataApi(buf);
 
-        event.getMessage().reply(changeRims(rim, file, event)).queue();
+        event.getMessage().reply(changeRims(rim, file)).queue();
         event.getMessage().reply(new File(file.getAbsolutePath()), file.getName()).queue();
 
     }
 
-    public static String changeRims(String rimId, File file, MessageReceivedEvent event) {
+    public static String changeRims(String rimId, File file) {
         try {
             byte[] array = Files.readAllBytes(Paths.get(file.getAbsolutePath()));
             int id = 0;
@@ -53,6 +53,6 @@ public class Decoder {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return "Rims changed from " + upgrades.getTiresAndRims().getRims() + " to " + rimId;
+        return "Rims on " + metadata.getCarName() + " changed from " + upgrades.getTiresAndRims().getRims() + " to " + rimId;
     }
 }

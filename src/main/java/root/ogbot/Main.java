@@ -67,7 +67,7 @@ public class Main extends ListenerAdapter {
                         .flatMap(Message::delete).queue();
 
                 //Bot channel ForzaModding
-                jda.getGuildById("457063425005191168").getTextChannelById("493072341467791361")
+                /*jda.getGuildById("457063425005191168").getTextChannelById("493072341467791361")
                         .sendMessage("I came online in " + loadTime + " ms!\n" +
                                 "Fastest: " + f + "ms\n" +
                                 "Slowest: " + s + "ms\n" +
@@ -76,7 +76,7 @@ public class Main extends ListenerAdapter {
                                 "(This message will be deleted in 5 minutes)")
                         .delay(5, TimeUnit.MINUTES)
                         .flatMap(Message::delete)
-                        .queue();
+                        .queue();*/
             }
         }).build();
         System.out.println("BOT STARTED");
@@ -94,47 +94,69 @@ public class Main extends ListenerAdapter {
 
         //if(content.startsWith("!fish")) fish.run(event);
         if (content.startsWith("!help"))
-            message.reply("List of commands:\n" +
-                    "!ping\n" +
+            message.reply("This bot was made for swapping rims on FH5 tune files, but " +
+                    "there's also a handful of commands/games that I added from an old bot I made for Kik " +
+                    "a long time ago.\n" +
+                    "!ping\n (Get message response time)" +
                     "!roll [your question]\n" +
-                    "!rps [rock, paper, scissors]\n" +
+                    //"!rps [rock, paper, scissors]\n" +
                     "!shouldi [something you wanna/dont wanna do]\n" +
                     "!8balls [you know how an 8ball works]\n" +
-                    "!type\n" +
-                    "!typescore (personal score, WIP)\n" +
-                    "!typescore:global\n" +
-                    "!swap [rimId] [tunefile] (Swap rims on tune files for FH5, EXPERIMENTAL)"
+                    "!guess:[easy|normal|hard] (Guess a number between 15, 25, or 50)\n" +
+                    "!type\n (type the given word as fast as possible)" +
+                    //"!typescore (personal score, WIP)\n" +
+                    "!typescore (Get the fastest typer's username)\n" +
+                    "!swap [rimId] [tunefile] (Swap rims on tune files for FH5, EXPERIMENTAL)\n" +
+                    "!swap:help (How to use rim swapper)" +
+                    "!swap:rims (Link to rim IDs)"
             ).queue();
+
+
+        if(content.equals("!help:swap"))
+            message.reply("To find the tune file you want to swap, make sure it's the most recently " +
+                    "downloaded tune. If not, download and save/install the tune with ugly rims. To get the file, " +
+                    "go to this location:\n" +
+                    "Microsoft: C:\\Users\\[user]\\AppData\\Local\\Packages\\Microsoft.624F8B84B80_8wekyb3d8bbwe\\SystemAppData\\wgs\n" +
+                    "Steam: C:\\Program Files (x86))\\Steam\\userdata\\[STEAMID]\\1551360\\remote\\[XUID]\\\n\n" +
+                    "For the Microsoft version, you may have 3+ folders in your wgs directory if you have multiple accounts signed in. " +
+                    "Open up the most recently modified one (after you download the tune). Open up the most recently " +
+                    "created/modified folder in here as well. You should see a few 1kb files and a container file. Hover over each file, " +
+                    "and find the one that is 378 bytes. This is the file you want to attach to the !swap command.\n" +
+                    "For steam, download your tune and open up the above directory. You should see something along the lines " +
+                    "of ''Tuning_####[date]####.Data'' as well as one with .header and a thumbnail. Make sure it's the tune you " +
+                    "downloaded by setting it to recently created/modified.\n\n" +
+                    "HOW TO USE COMMAND\nTo get the ID of the rim you want to swap, type !swap:rims to get the link." +
+                    "They will be a list of rims in the format of 'RIM_ID (RIM NAME). You only need to put the RIM_ID. For example, " +
+                    "to switch the rims to Work XD9's, you would attach the tune file to the command '!swap WOR_XD9' and send\n" +
+                    "The bot will reply with the tune file that you must replace the old tune file with.").queue();
+
+        if(content.equals("!help:rims"))
+            message.reply("Here is a link to the rim IDs. Remember, you only need the ID, not he name in parentheses.\n" +"" +
+                    "https://github.com/Ldalvik/FH5TuneSwapper/blob/main/rims").queue();
 
         if (content.equals("!link"))
             channel.sendMessage("Use this link to invite the bot to your groupchat: "
                     + "https://discord.com/oauth2/authorize?client_id=969807725666119790&scope=bot").queue();
 
-        if (content.startsWith("!log"))
-            System.out.println(content.substring(5));
+        if (content.startsWith("!log")) System.out.println(content.substring(5));
 
-        if (content.equals("!ping"))
-            ping.run(event);
+        if (content.equals("!ping")) ping.run(event);
 
         //if(content.startsWith("!rpc"))
             //RockPaperScissors.run(event);
 
-        if(content.startsWith("!guess"))
-            Guess.run(event);
+        if(content.startsWith("!guess")) Guess.run(event);
 
-        if (content.startsWith("!roll"))
-            Roll.run(event);
+        if (content.startsWith("!roll")) Roll.run(event);
 
-        if (content.startsWith("!shouldi"))
-            ShouldI.run(event);
+        if (content.startsWith("!shouldi")) ShouldI.run(event);
 
-        if(content.startsWith("!8balls"))
-            EightBalls.run(event);
+        if(content.startsWith("!8balls")) EightBalls.run(event);
 
-        if (event.getMessage().getAttachments().isEmpty())
-            type.run(event);  //Run everytime to check for correct type word
+        //Run everytime to check for correct type word
+        if (event.getMessage().getAttachments().isEmpty()) type.run(event);
 
-        if (content.equals("!typescore:global")) type.getGlobalHighscore(event);
+        if (content.equals("!typescore")) type.getGlobalHighscore(event);
 
         //if(content.equals("!typescore")) type.getPersonalHighscore(event);
 
