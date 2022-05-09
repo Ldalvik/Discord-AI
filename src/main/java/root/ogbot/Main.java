@@ -35,7 +35,7 @@ public class Main extends ListenerAdapter {
                     "also has a handful of commands/games that I added from an old bot I made for Kik " +
                     "a long time ago.")
             .addField("/help", "Displays this help command", true)
-            .addField("/ping", "Gets server response time. (used to calculate more accurate /type score)", true)
+            .addField("/ping", "Gets server response time. (used to calculate more accurate /type score)", false)
             .addField("/roll", "The more duplicates at the end of the number, the truer your statement is." +
                     "Least true being singles (most common) and 100% factual being octuples (least common)", true)
             .setFooter("For more in-depth explanations and extra info, visit the bot's website here.\n" +
