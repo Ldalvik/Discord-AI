@@ -1,5 +1,6 @@
 package root.ogbot;
 
+import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.*;
@@ -11,6 +12,7 @@ import root.ogbot.commands.*;
 import root.ogbot.decoder.Decoder;
 import root.ogbot.utils.ReadData;
 
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -25,6 +27,23 @@ public class Main extends ListenerAdapter {
     Fish fish = new Fish();
     Type type = new Type();
     Ping ping = new Ping();
+
+    Message helpcmd = (Message) new EmbedBuilder()
+            .setTitle("Help Commands", null)
+            .setColor(Color.CYAN)
+            .setDescription("This bot was made for swapping rims on FH5 tune files, but " +
+                    "also has a handful of commands/games that I added from an old bot I made for Kik " +
+                    "a long time ago.")
+            .addField("/help", "Displays this help command", true)
+            .addField("/ping", "Gets server response time. (used to calculate more accurate /type score)", true)
+            .addField("/roll", "The more duplicates at the end of the number, the truer your statement is." +
+                    "Least true being singles (most common) and 100% factual being octuples (least common)", true)
+            .setFooter("For more in-depth explanations and extra info, visit the bot's website here.\n" +
+                            "https://",
+                    "https://avatars.githubusercontent.com/u/25795619?s=400&u=45b3491cbd606e3bbbb14492b7807e3975b9bb0b&v=4")
+            .setThumbnail("https://avatars.githubusercontent.com/u/25795619?s=400&u=45b3491cbd606e3bbbb14492b7807e3975b9bb0b&v=4")
+            .build();
+
 
     public static void main(String[] arguments) throws Exception {
         System.out.println("Initializing...");
@@ -56,7 +75,7 @@ public class Main extends ListenerAdapter {
                                 "Version: " + VERSION + "\n" +
                                 "Heroku version: " + HEROKU_VERSION + "\n" +
                                 "(This message will be deleted in 5 minutes)")
-                        .delay(5, TimeUnit.MINUTES)
+                        .delay(5, TimeUnit.SECONDS)
                         .flatMap(Message::delete)
                         .queue();
 
@@ -94,7 +113,8 @@ public class Main extends ListenerAdapter {
 
         //if(content.startsWith("!fish")) fish.run(event);
         if (content.equals("!help"))
-            message.reply("This bot was made for swapping rims on FH5 tune files, but " +
+            message.reply(helpcmd).queue();
+            /*message.reply("This bot was made for swapping rims on FH5 tune files, but " +
                     "also has a handful of commands/games that I added from an old bot I made for Kik " +
                     "a long time ago.\n" +
                     "!help (Displays this help command)\n" +
@@ -111,7 +131,7 @@ public class Main extends ListenerAdapter {
                     "!swap:help (How to use rim swapper)\n" +
                     "!swap:rims (Link to rim IDs)\n" +
                     "!website (Replies with the bot's website)\n"
-            ).queue();
+            ).queue();*/
 
 
         if(content.equals("!swap:help"))
