@@ -35,7 +35,8 @@ public class Decoder {
             byte[] array = Files.readAllBytes(Paths.get(file.getAbsolutePath()));
             int id = 0;
             for(String line : Data.RIMS_ID)
-                if (line.split(",")[1].equals(rimId)) id = Integer.parseInt(line.split(",")[0]);
+                if (line.toLowerCase().split(",")[1].equals(rimId.toLowerCase()))
+                    id = Integer.parseInt(line.split(",")[0]);
             System.out.println("ID: " + id);
             byte[] rimHex = Utils.getBytes(id);
             array[10] = rimHex[0];
