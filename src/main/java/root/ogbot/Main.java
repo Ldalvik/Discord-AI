@@ -28,7 +28,7 @@ public class Main extends ListenerAdapter {
     Type type = new Type();
     Ping ping = new Ping();
 
-    Message helpcmd = (Message) new EmbedBuilder()
+    EmbedBuilder helpcmd = new EmbedBuilder()
             .setTitle("Help Commands", null)
             .setColor(Color.CYAN)
             .setDescription("This bot was made for swapping rims on FH5 tune files, but " +
@@ -41,8 +41,7 @@ public class Main extends ListenerAdapter {
             .setFooter("For more in-depth explanations and extra info, visit the bot's website here.\n" +
                             "https://",
                     "https://avatars.githubusercontent.com/u/25795619?s=400&u=45b3491cbd606e3bbbb14492b7807e3975b9bb0b&v=4")
-            .setThumbnail("https://avatars.githubusercontent.com/u/25795619?s=400&u=45b3491cbd606e3bbbb14492b7807e3975b9bb0b&v=4")
-            .build();
+            .setThumbnail("https://avatars.githubusercontent.com/u/25795619?s=400&u=45b3491cbd606e3bbbb14492b7807e3975b9bb0b&v=4");
 
 
     public static void main(String[] arguments) throws Exception {
@@ -113,7 +112,7 @@ public class Main extends ListenerAdapter {
 
         //if(content.startsWith("!fish")) fish.run(event);
         if (content.equals("!help"))
-            message.reply(helpcmd).queue();
+            message.reply("HELP MENU").setEmbeds(helpcmd.build()).queue();
             /*message.reply("This bot was made for swapping rims on FH5 tune files, but " +
                     "also has a handful of commands/games that I added from an old bot I made for Kik " +
                     "a long time ago.\n" +
