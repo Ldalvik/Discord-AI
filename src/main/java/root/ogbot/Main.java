@@ -95,9 +95,10 @@ public class Main extends ListenerAdapter {
         //if(content.startsWith("!fish")) fish.run(event);
         if (content.equals("!help"))
             message.reply("This bot was made for swapping rims on FH5 tune files, but " +
-                    "there's also a handful of commands/games that I added from an old bot I made for Kik " +
+                    "also has a handful of commands/games that I added from an old bot I made for Kik " +
                     "a long time ago.\n" +
-                    "!ping (Get message response time)" +
+                    "!help (Displays this help command)\n" +
+                    "!ping (Get message response time)\n" +
                     "!roll [your question]\n" +
                     //"!rps [rock, paper, scissors]\n" +
                     "!shouldi [something you wanna/dont wanna do]\n" +
@@ -105,10 +106,11 @@ public class Main extends ListenerAdapter {
                     "!guess:[easy|normal|hard] (Guess a number between 15, 25, or 50)\n" +
                     "!type (type the given word as fast as possible)\n" +
                     //"!typescore (personal score, WIP)\n" +
-                    "!typescore (Get the fastest typer's username)\n" +
+                    "!type:score (Get the fastest typer's username)\n" +
                     "!swap [rimId] [tunefile] (Swap rims on tune files for FH5, EXPERIMENTAL)\n" +
                     "!swap:help (How to use rim swapper)\n" +
-                    "!swap:rims (Link to rim IDs)"
+                    "!swap:rims (Link to rim IDs)\n" +
+                    "!website (Replies with the bot's website)\n"
             ).queue();
 
 
@@ -118,13 +120,16 @@ public class Main extends ListenerAdapter {
                     "go to this location:\n" +
                     "Microsoft: C:/Users/(user)/AppData/Local/Packages/Microsoft.624F8B84B80_8wekyb3d8bbwe/SystemAppData/wgs\n" +
                     "Steam: C:/Program Files (x86)/Steam/userdata/(STEAMID)/155136/remote/(XUID)/\n\n" +
-                    "For the Microsoft version, you may have 3+ folders (ignore the 't' folder) in your wgs directory if you have multiple accounts signed in. " +
-                    "Open up the most recently modified one (after you download the tune). Open up the most recently " +
-                    "created/modified folder in here as well. You should see a few 1kb files and a container file. Hover over each file, " +
-                    "and find the one that is 378 bytes. This is the file you want to attach to the !swap command.\n" +
-                    "For steam, download your tune and open up the directory. You should see something along the lines " +
-                    "of 'Tuning_####[date]####.Data' as well as one with .header and a thumbnail. You want the one that ends in " +
-                    "\n'.Data'. Make sure it's the tune you downloaded by setting it to recently created/modified.\n\n" +
+                    "(You may have 3+ folders (ignore the 't' folder) in your wgs directory if you have multiple " +
+                    "accounts signed in.) If you don't know which XUID is yours, it should be the most recently modified " +
+                    "folder (after you download a tune). Once you are in this folder, you should see a bunch of hashed folder names " +
+                    "and a container file. Open up the most recently created/modified folder in here as well. You should see a few 1kb " +
+                    "files and another container file. Hover over each file, and find the one that is 378 bytes. " +
+                    "This is the file you want to attach to the !swap command.\n\n" +
+                    "Steam is a lot simpler. Download your tune and open up the most recently modified directory in the " +
+                    "remote folder. You should see names along the lines of 'Tuning_####(date)####.Data' " +
+                    "as well as ones with .header and thumbnails. You want the one that ends in '.Data'. " +
+                    "Make sure it's the tune you downloaded by setting it to recently created/modified.\n\n" +
                     "HOW TO USE !swap COMMAND\nTo get the ID of the rim you want to swap, type !swap:rims to get the link. " +
                     "There will be a list of rims in the format of 'RIM_ID (RIM NAME). You only need to put the RIM_ID. For example, " +
                     "to switch the rims to Work XD9's, you would attach the tune file to the command '!swap WOR_XD9' and send\n" +
@@ -137,6 +142,9 @@ public class Main extends ListenerAdapter {
         if (content.equals("!link"))
             channel.sendMessage("Use this link to invite the bot to your groupchat: "
                     + "https://discord.com/oauth2/authorize?client_id=969807725666119790&scope=bot").queue();
+
+        if (content.equals("!website"))
+            channel.sendMessage("https://github.com/Ldalvik/SwapBot").queue();
 
         if (content.startsWith("!log")) System.out.println(content.substring(5));
 
@@ -154,7 +162,7 @@ public class Main extends ListenerAdapter {
         if(content.startsWith("!8balls")) EightBalls.run(event);
 
         //Run everytime to check for correct type word
-        if (event.getMessage().getAttachments().isEmpty()) type.run(event);
+        if (!event.getMessage().getContentRaw().isEmpty()) type.run(event);
 
         if (content.equals("!typescore")) type.getGlobalHighscore(event);
 
