@@ -82,7 +82,7 @@ public class Main extends ListenerAdapter {
                 int f = Integer.parseInt(loadTimes1[1]);
                 JDA jda = event.getJDA();
 
-                jda.upsertCommand("/help", "Displays this help command").queue();
+               /* jda.upsertCommand("/help", "Displays this help command").queue();
                 jda.upsertCommand("/invite", "Displays invite link to add this bot to a server.").queue();
                 jda.upsertCommand("/ping", "Gets server response time. (used to calculate more accurate /type score)").queue();
                 jda.upsertCommand("/roll", "The more duplicates at the end of the number, the truer your statement.").queue();
@@ -95,7 +95,7 @@ public class Main extends ListenerAdapter {
                 jda.upsertCommand("/swap [RIM_ID] [tuneFile]", "Swap rims on locked Forza Horizon 5 tune files.").queue();
                 jda.upsertCommand("/swap:help", "Display text tutorial on how to use the /swap command.").queue();
                 jda.upsertCommand("/swap:rims", "Link to the list of RIM_IDs needed for the /swap command.").queue();
-                jda.upsertCommand("/website", "Link the bot's website.").queue();
+                jda.upsertCommand("/website", "Link the bot's website.").queue(); */
 
                 //Bot channel LuAu
                 jda.getGuildById("398717225663725569").getTextChannelById("443097260423774208")
@@ -149,7 +149,7 @@ public class Main extends ListenerAdapter {
 
         //if(content.startsWith("!fish")) fish.run(event);
         if (content.equals("/help"))
-            channel.sendMessage("").setEmbeds(helpcmd.build()).queue();
+            message.reply("/help").setEmbeds(helpcmd.build()).queue();
             /*message.reply("This bot was made for swapping rims on FH5 tune files, but " +
                     "also has a handful of commands/games that I added from an old bot I made for Kik " +
                     "a long time ago.\n" +
