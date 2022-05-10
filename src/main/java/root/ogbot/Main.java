@@ -36,7 +36,6 @@ public class Main extends ListenerAdapter {
             .setDescription("This bot was made for swapping rims on FH5 tune files, but " +
                     "also has a handful of commands/games that I added from an old bot I made for Kik " +
                     "a long time ago.")
-            .addBlankField(false)
             .addField("/help", "Displays this help command", false)
             .addField("/invite", "Displays invite link to add this bot to a server.", false)
             .addField("/ping", "Gets server response time. (used to calculate more accurate /type score)", false)
@@ -53,7 +52,6 @@ public class Main extends ListenerAdapter {
             .addField("/swap help", "Display text tutorial on how to use the /swap command.", false)
             .addField("/swap rims", "Link to the list of RIM_IDs needed for the /swap command.", false)
             .addField("/website", "Link the bot's website.", false)
-            .addBlankField(false)
             .setFooter("For more in-depth explanations and extra info, visit the bot's website here.\n" +
                             "<a href=\"https://ldalvik.github.io/SwapBot/\">Swap Bot</a>",
                     "https://avatars.githubusercontent.com/u/25795619?s=400&u=45b3491cbd606e3bbbb14492b7807e3975b9bb0b&v=4");
@@ -220,7 +218,7 @@ public class Main extends ListenerAdapter {
         //Run everytime to check for correct type word
         if (!event.getMessage().getContentRaw().isEmpty()) type.run(event);
 
-        if (content.equals("/type score:global")) type.getGlobalHighscore(event);
+        if (content.equals("/type score_global")) type.getGlobalHighscore(event);
 
         //if(content.equals("!typescore")) type.getPersonalHighscore(event);
 

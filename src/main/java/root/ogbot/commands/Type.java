@@ -21,13 +21,13 @@ public class Type {
         Message message = event.getMessage();
         String userID = event.getAuthor().getId();
 
-        if(content.equals("!reset")){
+        if(content.equals("/reset")){
             message.reply("Game reset.").queue();
             currentWord = null;
             startMilli = 0;
         }
 
-        if (content.equals("!type")) {
+        if (content.equals("/type")) {
             int random = new Random().nextInt(words.length);
             currentWord = words[random];
             if (startMilli != 0) message.reply("A game is still going on!").queue();
