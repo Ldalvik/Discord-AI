@@ -34,20 +34,34 @@ public class Main extends ListenerAdapter {
             .setDescription("This bot was made for swapping rims on FH5 tune files, but " +
                     "also has a handful of commands/games that I added from an old bot I made for Kik " +
                     "a long time ago.")
-            .addField("/help", "Displays this help command", true)
+            .addBlankField(false)
+            .addField("/help", "Displays this help command", false)
+            .addField("/invite", "Displays invite link to add this bot to a server.", false)
             .addField("/ping", "Gets server response time. (used to calculate more accurate /type score)", false)
             .addField("/roll", "The more duplicates at the end of the number, the truer your statement is." +
-                    "Least true being singles (most common) and 100% factual being octuples (least common)", true)
+                    "Least true being singles (most common) and 100% factual being octuples (least common)", false)
+            .addField("/shouldi [something you wanna/don't wanna do]", "Ask questions in a \"Should I\" format. May or " +
+                            "may not have programmed responses for certain keywords.", false)
+            .addField("/8balls [question here]", "Come on, you know how 8balls work.", false)
+            .addField("/guess [easy|normal|hard]", "Guess a number between 15, 25, or 50. (easy, normal hard)", false)
+            .addField("/type", "Type the given word as fast as you can. Fastest scores are saved.", false)
+            .addField("/type:score", "[NOT WORKING, FIXED IN 0.1.0] Get your personal highscore.", false)
+            .addField("/type:score:global", "Get user with the fastest response time.", false)
+            .addField("/swap [RIM_ID] [tuneFile]", "Swap rims on locked Forza Horizon 5 tune files.", false)
+            .addField("/swap:help", "Display text tutorial on how to use the /swap command.", false)
+            .addField("/swap:rims", "Link to the list of RIM_IDs needed for the /swap command.", false)
+            .addField("/website", "Link the bot's website.", false)
+            .addBlankField(false)
             .setFooter("For more in-depth explanations and extra info, visit the bot's website here.\n" +
-                            "https://",
-                    "https://avatars.githubusercontent.com/u/25795619?s=400&u=45b3491cbd606e3bbbb14492b7807e3975b9bb0b&v=4")
-            .setThumbnail("https://avatars.githubusercontent.com/u/25795619?s=400&u=45b3491cbd606e3bbbb14492b7807e3975b9bb0b&v=4");
+                            "https://ldalvik.github.io/SwapBot/",
+                    "https://avatars.githubusercontent.com/u/25795619?s=400&u=45b3491cbd606e3bbbb14492b7807e3975b9bb0b&v=4");
+            //.setThumbnail("https://avatars.githubusercontent.com/u/25795619?s=400&u=45b3491cbd606e3bbbb14492b7807e3975b9bb0b&v=4");
 
 
     public static void main(String[] arguments) throws Exception {
         System.out.println("Initializing...");
         JDABuilder api = JDABuilder.createDefault("OTY5ODA3NzI1NjY2MTE5Nzkw.Ymyx0w.Brx5EZ6mR-OU-K7xJGmi4Y9xJ_Y");
-        api.setActivity(Activity.watching("for commands like !help..."));
+        api.setActivity(Activity.watching("for commands like /help..."));
         api.addEventListeners(new Main());
         api.addEventListeners(new ListenerAdapter() {
             @Override
@@ -80,8 +94,8 @@ public class Main extends ListenerAdapter {
 
                 //Status channel for bot
                 jda.getGuildById("969809178401050655").getTextChannelById("972053387921219584")
-                        .sendMessageFormat("I came online in %d ms! (This message will be deleted in 5 minutes)", loadTime)
-                        .delay(10, TimeUnit.SECONDS)
+                        .sendMessageFormat("I came online in %d ms! (This message will be deleted in 30 seconds)", loadTime)
+                        .delay(30, TimeUnit.SECONDS)
                         .flatMap(Message::delete).queue();
 
                 //Bot channel ForzaModding
@@ -111,8 +125,8 @@ public class Main extends ListenerAdapter {
         String userID = event.getAuthor().getId();
 
         //if(content.startsWith("!fish")) fish.run(event);
-        if (content.equals("!help"))
-            message.reply("HELP MENU").setEmbeds(helpcmd.build()).queue();
+        if (content.equals("/help"))
+            channel.sendMessage("").setEmbeds(helpcmd.build()).queue();
             /*message.reply("This bot was made for swapping rims on FH5 tune files, but " +
                     "also has a handful of commands/games that I added from an old bot I made for Kik " +
                     "a long time ago.\n" +
@@ -133,18 +147,18 @@ public class Main extends ListenerAdapter {
             ).queue();*/
 
 
-        if(content.equals("!swap:help"))
+        if(content.equals("/swap:help"))
             message.reply("To find the tune file you want to swap, make sure it's the most recently " +
                     "downloaded tune. If not, download and save/install the tune with ugly rims. To get the file, " +
-                    "go to this location:\n" +
+                    "go to this location:\n\n" +
                     "Microsoft: C:/Users/(user)/AppData/Local/Packages/Microsoft.624F8B84B80_8wekyb3d8bbwe/SystemAppData/wgs\n" +
-                    "Steam: C:/Program Files (x86)/Steam/userdata/(STEAMID)/155136/remote/(XUID)/\n\n" +
                     "(You may have 3+ folders (ignore the 't' folder) in your wgs directory if you have multiple " +
                     "accounts signed in.) If you don't know which XUID is yours, it should be the most recently modified " +
                     "folder (after you download a tune). Once you are in this folder, you should see a bunch of hashed folder names " +
                     "and a container file. Open up the most recently created/modified folder in here as well. You should see a few 1kb " +
                     "files and another container file. Hover over each file, and find the one that is 378 bytes. " +
                     "This is the file you want to attach to the !swap command.\n\n" +
+                    "Steam: C:/Program Files (x86)/Steam/userdata/(STEAMID)/155136/remote/(XUID)/\n\n" +
                     "Steam is a lot simpler. Download your tune and open up the most recently modified directory in the " +
                     "remote folder. You should see names along the lines of 'Tuning_####(date)####.Data' " +
                     "as well as ones with .header and thumbnails. You want the one that ends in '.Data'. " +
@@ -154,40 +168,40 @@ public class Main extends ListenerAdapter {
                     "to switch the rims to Work XD9's, you would attach the tune file to the command '!swap WOR_XD9' and send\n" +
                     "The bot will reply with the tune file that you must replace the old tune file with.").queue();
 
-        if(content.equals("!swap:rims"))
+        if(content.equals("/swap:rims"))
             message.reply("Here is a link to the rim IDs. Remember, you only need the ID, not he name in parentheses.\n" +"" +
-                    "https://github.com/Ldalvik/FH5TuneSwapper/blob/main/rims").queue();
+                    "https://github.com/Ldalvik/SwapBot/blob/main/RIM_IDS.txt").queue();
 
-        if (content.equals("!link"))
+        if (content.equals("/invite"))
             channel.sendMessage("Use this link to invite the bot to your groupchat: "
                     + "https://discord.com/oauth2/authorize?client_id=969807725666119790&scope=bot").queue();
 
-        if (content.equals("!website"))
+        if (content.equals("/website"))
             channel.sendMessage("https://github.com/Ldalvik/SwapBot").queue();
 
-        if (content.startsWith("!log")) System.out.println(content.substring(5));
+        if (content.startsWith("/log")) System.out.println(content.substring(5));
 
-        if (content.equals("!ping")) ping.run(event);
+        if (content.equals("/ping")) ping.run(event);
 
         //if(content.startsWith("!rpc"))
             //RockPaperScissors.run(event);
 
-        if(content.startsWith("!guess")) Guess.run(event);
+        if(content.startsWith("/guess")) Guess.run(event);
 
-        if (content.startsWith("!roll")) Roll.run(event);
+        if (content.startsWith("/roll")) Roll.run(event);
 
-        if (content.startsWith("!shouldi")) ShouldI.run(event);
+        if (content.startsWith("/shouldi")) ShouldI.run(event);
 
-        if(content.startsWith("!8balls")) EightBalls.run(event);
+        if(content.startsWith("/8balls")) EightBalls.run(event);
 
         //Run everytime to check for correct type word
         if (!event.getMessage().getContentRaw().isEmpty()) type.run(event);
 
-        if (content.equals("!typescore")) type.getGlobalHighscore(event);
+        if (content.equals("/type:score:global")) type.getGlobalHighscore(event);
 
         //if(content.equals("!typescore")) type.getPersonalHighscore(event);
 
-        if (content.startsWith("!swap")) {
+        if (content.startsWith("/swap")) {
             List<Message.Attachment> attachments = event.getMessage().getAttachments();
             if (attachments.isEmpty()) return; // no attachments on the message!
 
