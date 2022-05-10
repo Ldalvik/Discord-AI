@@ -23,8 +23,8 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
 public class Main extends ListenerAdapter {
-    public static String VERSION = "0.0.2";
-    public static String HEROKU_VERSION = "v45";
+    public static String VERSION = "0.0.3";
+    public static String HEROKU_VERSION = "v55";
     static long start = System.currentTimeMillis();
     Fish fish = new Fish();
     Type type = new Type();
@@ -47,7 +47,7 @@ public class Main extends ListenerAdapter {
             .addField("/guess [easy|normal|hard]", "Guess a number between 15, 25, or 50. (easy, normal hard)", false)
             .addField("/type", "Type the given word as fast as you can. Fastest scores are saved.", false)
             .addField("/type score", "[NOT WORKING, FIXED IN 0.1.0] Get your personal highscore.", false)
-            .addField("/type score:global", "Get user with the fastest response time.", false)
+            .addField("/type score_global", "Get user with the fastest response time.", false)
             .addField("/swap [RIM_ID] [tuneFile]", "Swap rims on locked Forza Horizon 5 tune files.", false)
             .addField("/swap help", "Display text tutorial on how to use the /swap command.", false)
             .addField("/swap rims", "Link to the list of RIM_IDs needed for the /swap command.", false)
@@ -60,7 +60,7 @@ public class Main extends ListenerAdapter {
 
     public static void main(String[] arguments) throws Exception {
         System.out.println("Initializing...");
-        JDABuilder api = JDABuilder.createDefault("OTY5ODA3NzI1NjY2MTE5Nzkw.Ymyx0w.Brx5EZ6mR-OU-K7xJGmi4Y9xJ_Y");
+        JDABuilder api = JDABuilder.createDefault("9ndSHR9X9yS10crBUqFLvZlBykd3ktSx");
         api.setActivity(Activity.watching("for commands like /help..."));
         api.addEventListeners(new Main());
         api.addEventListeners(new ListenerAdapter() {
@@ -80,20 +80,20 @@ public class Main extends ListenerAdapter {
                 int f = Integer.parseInt(loadTimes1[1]);
                 JDA jda = event.getJDA();
 
-               /* jda.upsertCommand("/help", "Displays this help command").queue();
-                jda.upsertCommand("/invite", "Displays invite link to add this bot to a server.").queue();
-                jda.upsertCommand("/ping", "Gets server response time. (used to calculate more accurate /type score)").queue();
-                jda.upsertCommand("/roll", "The more duplicates at the end of the number, the truer your statement.").queue();
-                jda.upsertCommand("/shouldi [something you wanna/don't wanna do]", "Ask questions in a \"Should I\" format. May or ").queue();
-                jda.upsertCommand("/8balls [question here]", "Come on, you know how 8balls work.").queue();
-                jda.upsertCommand("/guess [easy|normal|hard]", "Guess a number between 15, 25, or 50. (easy, normal hard)").queue();
-                jda.upsertCommand("/type", "Type the given word as fast as you can. Fastest scores are saved.").queue();
-                jda.upsertCommand("/type:score", "[NOT WORKING, FIXED IN 0.1.0] Get your personal highscore.").queue();
-                jda.upsertCommand("/type:score:global", "Get user with the fastest response time.").queue();
-                jda.upsertCommand("/swap [RIM_ID] [tuneFile]", "Swap rims on locked Forza Horizon 5 tune files.").queue();
-                jda.upsertCommand("/swap:help", "Display text tutorial on how to use the /swap command.").queue();
-                jda.upsertCommand("/swap:rims", "Link to the list of RIM_IDs needed for the /swap command.").queue();
-                jda.upsertCommand("/website", "Link the bot's website.").queue(); */
+                jda.upsertCommand("help", "Displays this help command").queue();
+                jda.upsertCommand("invite", "Displays invite link to add this bot to a server.").queue();
+                jda.upsertCommand("ping", "Gets server response time. (used to calculate more accurate /type score)").queue();
+                jda.upsertCommand("roll", "The more duplicates at the end of the number, the truer your statement.").queue();
+                jda.upsertCommand("shouldi [something you wanna/don't wanna do]", "Ask questions in a \"Should I\" format. May or ").queue();
+                jda.upsertCommand("8balls [question here]", "Come on, you know how 8balls work.").queue();
+                jda.upsertCommand("guess [easy|normal|hard]", "Guess a number between 15, 25, or 50. (easy, normal hard)").queue();
+                jda.upsertCommand("type", "Type the given word as fast as you can. Fastest scores are saved.").queue();
+                jda.upsertCommand("type:score", "[NOT WORKING, FIXED IN 0.1.0] Get your personal highscore.").queue();
+                jda.upsertCommand("type:score:global", "Get user with the fastest response time.").queue();
+                jda.upsertCommand("swap [RIM_ID] [tuneFile]", "Swap rims on locked Forza Horizon 5 tune files.").queue();
+                jda.upsertCommand("swap:help", "Display text tutorial on how to use the /swap command.").queue();
+                jda.upsertCommand("swap:rims", "Link to the list of RIM_IDs needed for the /swap command.").queue();
+                jda.upsertCommand("website", "Link the bot's website.").queue();
 
                 //Bot channel LuAu
                 jda.getGuildById("398717225663725569").getTextChannelById("443097260423774208")
