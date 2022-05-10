@@ -7,6 +7,8 @@ import net.dv8tion.jda.api.entities.*;
 import net.dv8tion.jda.api.events.ReadyEvent;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import net.dv8tion.jda.api.interactions.commands.Command;
+import net.dv8tion.jda.api.interactions.commands.build.CommandData;
 import org.jetbrains.annotations.NotNull;
 import root.ogbot.commands.*;
 import root.ogbot.decoder.Decoder;
@@ -80,6 +82,21 @@ public class Main extends ListenerAdapter {
                 int f = Integer.parseInt(loadTimes1[1]);
                 JDA jda = event.getJDA();
 
+                jda.upsertCommand("/help", "Displays this help command").queue();
+                jda.upsertCommand("/invite", "Displays invite link to add this bot to a server.").queue();
+                jda.upsertCommand("/ping", "Gets server response time. (used to calculate more accurate /type score)").queue();
+                jda.upsertCommand("/roll", "The more duplicates at the end of the number, the truer your statement.").queue();
+                jda.upsertCommand("/shouldi [something you wanna/don't wanna do]", "Ask questions in a \"Should I\" format. May or ").queue();
+                jda.upsertCommand("/8balls [question here]", "Come on, you know how 8balls work.").queue();
+                jda.upsertCommand("/guess [easy|normal|hard]", "Guess a number between 15, 25, or 50. (easy, normal hard)").queue();
+                jda.upsertCommand("/type", "Type the given word as fast as you can. Fastest scores are saved.").queue();
+                jda.upsertCommand("/type:score", "[NOT WORKING, FIXED IN 0.1.0] Get your personal highscore.").queue();
+                jda.upsertCommand("/type:score:global", "Get user with the fastest response time.").queue();
+                jda.upsertCommand("/swap [RIM_ID] [tuneFile]", "Swap rims on locked Forza Horizon 5 tune files.").queue();
+                jda.upsertCommand("/swap:help", "Display text tutorial on how to use the /swap command.").queue();
+                jda.upsertCommand("/swap:rims", "Link to the list of RIM_IDs needed for the /swap command.").queue();
+                jda.upsertCommand("/website", "Link the bot's website.").queue();
+
                 //Bot channel LuAu
                 jda.getGuildById("398717225663725569").getTextChannelById("443097260423774208")
                         .sendMessage("I came online in " + loadTime + " ms!\n" +
@@ -94,7 +111,12 @@ public class Main extends ListenerAdapter {
 
                 //Status channel for bot
                 jda.getGuildById("969809178401050655").getTextChannelById("972053387921219584")
-                        .sendMessageFormat("I came online in %d ms! (This message will be deleted in 30 seconds)", loadTime)
+                        .sendMessage("I came online in " + loadTime + " ms!\n" +
+                                "Fastest: " + f + "ms\n" +
+                                "Slowest: " + s + "ms\n" +
+                                "Version: " + VERSION + "\n" +
+                                "Heroku version: " + HEROKU_VERSION + "\n" +
+                                "(This message will be deleted in 30 seconds)")
                         .delay(30, TimeUnit.SECONDS)
                         .flatMap(Message::delete).queue();
 
@@ -113,6 +135,7 @@ public class Main extends ListenerAdapter {
         }).build();
         System.out.println("BOT STARTED");
     }
+
 
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
