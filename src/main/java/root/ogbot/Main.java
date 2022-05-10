@@ -47,15 +47,15 @@ public class Main extends ListenerAdapter {
             .addField("/8balls [question here]", "Come on, you know how 8balls work.", false)
             .addField("/guess [easy|normal|hard]", "Guess a number between 15, 25, or 50. (easy, normal hard)", false)
             .addField("/type", "Type the given word as fast as you can. Fastest scores are saved.", false)
-            .addField("/type:score", "[NOT WORKING, FIXED IN 0.1.0] Get your personal highscore.", false)
-            .addField("/type:score:global", "Get user with the fastest response time.", false)
+            .addField("/type score", "[NOT WORKING, FIXED IN 0.1.0] Get your personal highscore.", false)
+            .addField("/type score:global", "Get user with the fastest response time.", false)
             .addField("/swap [RIM_ID] [tuneFile]", "Swap rims on locked Forza Horizon 5 tune files.", false)
-            .addField("/swap:help", "Display text tutorial on how to use the /swap command.", false)
-            .addField("/swap:rims", "Link to the list of RIM_IDs needed for the /swap command.", false)
+            .addField("/swap help", "Display text tutorial on how to use the /swap command.", false)
+            .addField("/swap rims", "Link to the list of RIM_IDs needed for the /swap command.", false)
             .addField("/website", "Link the bot's website.", false)
             .addBlankField(false)
             .setFooter("For more in-depth explanations and extra info, visit the bot's website here.\n" +
-                            "https://ldalvik.github.io/SwapBot/",
+                            "<a href=\"https://ldalvik.github.io/SwapBot/\">Swap Bot</a>",
                     "https://avatars.githubusercontent.com/u/25795619?s=400&u=45b3491cbd606e3bbbb14492b7807e3975b9bb0b&v=4");
             //.setThumbnail("https://avatars.githubusercontent.com/u/25795619?s=400&u=45b3491cbd606e3bbbb14492b7807e3975b9bb0b&v=4");
 
@@ -170,7 +170,7 @@ public class Main extends ListenerAdapter {
             ).queue();*/
 
 
-        if(content.equals("/swap:help"))
+        if(content.equals("/swap help"))
             message.reply("To find the tune file you want to swap, make sure it's the most recently " +
                     "downloaded tune. If not, download and save/install the tune with ugly rims. To get the file, " +
                     "go to this location:\n\n" +
@@ -191,7 +191,7 @@ public class Main extends ListenerAdapter {
                     "to switch the rims to Work XD9's, you would attach the tune file to the command '!swap WOR_XD9' and send\n" +
                     "The bot will reply with the tune file that you must replace the old tune file with.").queue();
 
-        if(content.equals("/swap:rims"))
+        if(content.equals("/swap rims"))
             message.reply("Here is a link to the rim IDs. Remember, you only need the ID, not he name in parentheses.\n" +"" +
                     "https://github.com/Ldalvik/SwapBot/blob/main/RIM_IDS.txt").queue();
 
@@ -220,7 +220,7 @@ public class Main extends ListenerAdapter {
         //Run everytime to check for correct type word
         if (!event.getMessage().getContentRaw().isEmpty()) type.run(event);
 
-        if (content.equals("/type:score:global")) type.getGlobalHighscore(event);
+        if (content.equals("/type score:global")) type.getGlobalHighscore(event);
 
         //if(content.equals("!typescore")) type.getPersonalHighscore(event);
 
