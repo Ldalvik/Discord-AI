@@ -23,7 +23,7 @@ public class SwapListener extends ListenerAdapter {
         if(event.getMessage().getContentRaw().startsWith("!swap")) {
             String[] args = event.getMessage().getContentRaw().split("\\s+");
 
-            if (args[1] == null) {
+            if (args.length == 1) {
                 event.getMessage()
                         .reply("You need to supply a `RIM_ID` to this command. Use `!help rims` to get a link to them.")
                         .queue();
