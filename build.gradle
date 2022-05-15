@@ -3,12 +3,12 @@ plugins {
     id'com.github.johnrengelman.shadow' version '5.2.0'
 }
 
-mainClassName = 'root.ogbot.Main'
+mainClassName = 'swap.bot.root.SwapBot'
 
 version '1.0'
 def jdaVersion = '5.0.0-alpha.11'
 
-sourceCompatibility = targetCompatibility = 1.8
+sourceCompatibility = targetCompatibility = JavaVersion.VERSION_17
 
 repositories {
     mavenCentral()

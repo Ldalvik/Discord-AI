@@ -29,6 +29,9 @@ public class Main extends ListenerAdapter {
     Fish fish = new Fish();
     Type type = new Type();
     Ping ping = new Ping();
+    String testt = """
+    ererr
+    """;
 
     EmbedBuilder helpcmd = new EmbedBuilder()
             .setTitle("Help Commands", null)
@@ -80,11 +83,7 @@ public class Main extends ListenerAdapter {
                 int f = Integer.parseInt(loadTimes1[1]);
                 JDA jda = event.getJDA();
 
-                jda.upsertCommand("help", "Displays this help command").queue();
-                jda.upsertCommand("invite", "Displays invite link to add this bot to a server.").queue();
-                jda.upsertCommand("ping", "Gets server response time. (used to calculate more accurate /type score)").queue();
-                jda.upsertCommand("roll", "The more duplicates at the end of the number, the truer your statement.").queue();
-                jda.upsertCommand("shouldi [something you wanna/don't wanna do]", "Ask questions in a \"Should I\" format. May or ").queue();
+                /*jda.upsertCommand("shouldi [question]", "Ask questions in a \"Should I\" format. May or ").queue();
                 jda.upsertCommand("8balls [question here]", "Come on, you know how 8balls work.").queue();
                 jda.upsertCommand("guess [easy|normal|hard]", "Guess a number between 15, 25, or 50. (easy, normal hard)").queue();
                 jda.upsertCommand("type", "Type the given word as fast as you can. Fastest scores are saved.").queue();
@@ -93,7 +92,7 @@ public class Main extends ListenerAdapter {
                 jda.upsertCommand("swap [RIM_ID] [tuneFile]", "Swap rims on locked Forza Horizon 5 tune files.").queue();
                 jda.upsertCommand("swap:help", "Display text tutorial on how to use the /swap command.").queue();
                 jda.upsertCommand("swap:rims", "Link to the list of RIM_IDs needed for the /swap command.").queue();
-                jda.upsertCommand("website", "Link the bot's website.").queue();
+                jda.upsertCommand("website", "Link the bot's website.").queue();*/
 
                 //Bot channel LuAu
                 jda.getGuildById("398717225663725569").getTextChannelById("443097260423774208")
@@ -169,25 +168,38 @@ public class Main extends ListenerAdapter {
 
 
         if(content.equals("/swap help"))
-            message.reply("To find the tune file you want to swap, make sure it's the most recently " +
-                    "downloaded tune. If not, download and save/install the tune with ugly rims. To get the file, " +
-                    "go to this location:\n\n" +
-                    "Microsoft: C:/Users/(user)/AppData/Local/Packages/Microsoft.624F8B84B80_8wekyb3d8bbwe/SystemAppData/wgs\n" +
-                    "(You may have 3+ folders (ignore the 't' folder) in your wgs directory if you have multiple " +
-                    "accounts signed in.) If you don't know which XUID is yours, it should be the most recently modified " +
-                    "folder (after you download a tune). Once you are in this folder, you should see a bunch of hashed folder names " +
-                    "and a container file. Open up the most recently created/modified folder in here as well. You should see a few 1kb " +
-                    "files and another container file. Hover over each file, and find the one that is 378 bytes. " +
-                    "This is the file you want to attach to the !swap command.\n\n" +
-                    "Steam: C:/Program Files (x86)/Steam/userdata/(STEAMID)/155136/remote/(XUID)/\n\n" +
-                    "Steam is a lot simpler. Download your tune and open up the most recently modified directory in the " +
-                    "remote folder. You should see names along the lines of 'Tuning_####(date)####.Data' " +
-                    "as well as ones with .header and thumbnails. You want the one that ends in '.Data'. " +
-                    "Make sure it's the tune you downloaded by setting it to recently created/modified.\n\n" +
-                    "HOW TO USE !swap COMMAND\nTo get the ID of the rim you want to swap, type !swap:rims to get the link. " +
-                    "There will be a list of rims in the format of 'RIM_ID (RIM NAME). You only need to put the RIM_ID. For example, " +
-                    "to switch the rims to Work XD9's, you would attach the tune file to the command '!swap WOR_XD9' and send\n" +
-                    "The bot will reply with the tune file that you must replace the old tune file with.").queue();
+            message.reply("""
+                    To find the tune file you want to swap, make sure it's the most recently 
+                    "downloaded tune. If not, download and save/install the tune with ugly rims. To get the file, 
+                    "go to this location:
+                    
+                    "Microsoft: C:/Users/(user)/AppData/Local/Packages/Microsoft.624F8B84B80_8wekyb3d8bbwe/SystemAppData/wgs
+                    
+                    "(You may have 3+ folders (ignore the 't' folder) in your wgs directory if you have multiple 
+                    "accounts signed in.) If you don't know which XUID is yours, it should be the most recently modified 
+                    "folder (after you download a tune). Once you are in this folder, you should see a bunch of hashed folder names 
+                    "and a container file. Open up the most recently created/modified folder in here as well. You should see a few 1kb 
+                    "files and another container file. Hover over each file, and find the one that is 378 bytes. 
+                    "This is the file you want to attach to the !swap command.
+                    
+                    
+                    "Steam: C:/Program Files (x86)/Steam/userdata/(STEAMID)/155136/remote/(XUID)/
+                    
+                    
+                    "Steam is a lot simpler. Download your tune and open up the most recently modified directory in the 
+                    "remote folder. You should see names along the lines of 'Tuning_####(date)####.Data' 
+                    "as well as ones with .header and thumbnails. You want the one that ends in '.Data'. 
+                    "Make sure it's the tune you downloaded by setting it to recently created/modified.
+                    
+                    
+                    "HOW TO USE !swap COMMAND
+                    To get the ID of the rim you want to swap, type !swap:rims to get the link. 
+                    "There will be a list of rims in the format of 'RIM_ID (RIM NAME). You only need to put the RIM_ID. For example, 
+                    "to switch the rims to Work XD9's, you would attach the tune file to the command '!swap WOR_XD9' and send
+                    
+                    "The bot will reply with the tune file that you must replace the old tune file with.
+                    """
+            ).queue();
 
         if(content.equals("/swap rims"))
             message.reply("Here is a link to the rim IDs. Remember, you only need the ID, not he name in parentheses.\n" +"" +
