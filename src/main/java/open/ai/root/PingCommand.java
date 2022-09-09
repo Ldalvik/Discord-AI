@@ -12,18 +12,25 @@ public class PingCommand extends ListenerAdapter {
     public void onSlashCommandInteraction(SlashCommandInteractionEvent event) {
         if (event.getName().equalsIgnoreCase("ping")) {
             long time = System.currentTimeMillis();
-            event.getChannel().sendMessageEmbeds(new EmbedBuilder()
-                            .setColor(Color.cyan)
-                            .setTitle("Ping!")
-                            .addField("Response time", "Pinging...", false).build())
+            event.reply("Pinging...")
                     .queue(response -> {
                         long responseTime = System.currentTimeMillis() - time;
-                        response.editMessageEmbeds(new EmbedBuilder()
-                                        .setColor(Color.cyan)
-                                        .setTitle("Pong!")
-                                        .addField("Response time", responseTime + "ms", false).build())
-                                .queue();
+                        response.editOriginalFormat("Pong! " + responseTime + "ms").queue();
                     });
+
+//            long time = System.currentTimeMillis();
+//            event.getChannel().sendMessageEmbeds(new EmbedBuilder()
+//                            .setColor(Color.cyan)
+//                            .setTitle("Ping!")
+//                            .addField("Response time", "Pinging...", false).build())
+//                    .queue(response -> {
+//                        long responseTime = System.currentTimeMillis() - time;
+//                        response.editMessageEmbeds(new EmbedBuilder()
+//                                        .setColor(Color.cyan)
+//                                        .setTitle("Pong!")
+//                                        .addField("Response time", responseTime + "ms", false).build())
+//                                .queue();
+//                    });
         }
     }
 }

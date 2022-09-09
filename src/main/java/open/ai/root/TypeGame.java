@@ -39,6 +39,7 @@ public class TypeGame extends ListenerAdapter {
                 Long.parseLong(FileUtils.read("games/type/time"));
         if (event.getMessage().getContentRaw().equals(currentWord)) {
             event.getMessage().replyEmbeds(new EmbedBuilder()
+                            .setTitle(event.getAuthor().getName() + " got it!")
                     .addField("Guessed in:", (guessTime / 1000.0) + " seconds", false)
                     .build()).queue();
             FileUtils.write("games/type/word", "null");

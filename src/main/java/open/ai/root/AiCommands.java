@@ -166,7 +166,7 @@ public class AiCommands extends ListenerAdapter {
         FileUtils.write("options-temp.ai", event.getOption("temperature").getAsString());
         event.replyEmbeds(new EmbedBuilder()
                 .setColor(Color.green)
-                .addField("New temp", event.getOption("tempature").getAsString(), false)
+                .addField("New temp", event.getOption("temperature").getAsString(), false)
                 .build()).queue();
     }
 
