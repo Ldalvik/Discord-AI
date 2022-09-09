@@ -85,6 +85,10 @@ public class AiCommands extends ListenerAdapter {
         if (event.getName().equalsIgnoreCase("presence")) {
             setPresence(event);
         }
+
+        if (event.getName().equalsIgnoreCase("resetconvo")) {
+            FileUtils.write("convo.ai", "");
+        }
     }
 
     private void setSarcasticChatbot() {
