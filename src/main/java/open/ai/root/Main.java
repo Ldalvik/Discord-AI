@@ -12,7 +12,6 @@ public class Main {
 
         api.addEventListeners(
                 new ReadyListener(System.currentTimeMillis()),
-                new ChatCommands(),
                 new AiCommands(),
                 new Debug(),
                 new TypeGame(),
