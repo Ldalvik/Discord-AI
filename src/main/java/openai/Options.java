@@ -137,6 +137,7 @@ public class Options {
             .setTemperature(0)
             .setTopP(1)
             .setFrequencyPenalty(0.5)
+            .setMaxTokens(1000)
             .setPresencePenalty(0);
 
     public static Options Sarcastic_Chat_Bot = new Options()
