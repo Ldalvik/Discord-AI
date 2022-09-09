@@ -38,7 +38,7 @@ public class Options {
 
     private String  model = DAVINCI_002;
     private double  temperature = 1;
-    private int     maxTokens = 50;
+    private int     maxTokens = 150;
     private double  topP = 1;
     private double  frequencyPenalty = 0;
     private double  presencePenalty = 0;
