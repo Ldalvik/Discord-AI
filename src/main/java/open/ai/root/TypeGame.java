@@ -1,4 +1,4 @@
-package swap.bot.root;
+package open.ai.root;
 
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
@@ -20,7 +20,7 @@ public class TypeGame extends ListenerAdapter {
         if (event.getName().equalsIgnoreCase("type")) {
             if(!FileUtils.read("games/type/word").equals("null")) {
                 event.replyEmbeds(new EmbedBuilder()
-                        .setTitle("A game is still going! If your stuck, use /reset.").build()).queue();
+                        .setTitle("A game is still going! If you're stuck, use /reset.").build()).queue();
             } else {
                 String currentWord = words[new Random().nextInt(words.length)];
                 FileUtils.write("games/type/word", currentWord);

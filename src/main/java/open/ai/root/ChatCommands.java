@@ -1,4 +1,4 @@
-package swap.bot.root;
+package open.ai.root;
 
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;

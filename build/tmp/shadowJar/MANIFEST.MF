@@ -1,3 +1,3 @@
 Manifest-Version: 1.0
-Main-Class: swap.bot.root.SwapBot
+Main-Class: open.ai.root.Main
 
